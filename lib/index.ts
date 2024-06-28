@@ -209,7 +209,10 @@ export function tap<
 }
 
 
-export function props( obj: any ): Promise< any >
+export function props<
+  T extends Record< string, unknown >
+>( obj: T )
+: Promise< { [key in keyof T]: Awaited< T[key] > } >
 {
 	const ret: any = { };
 
